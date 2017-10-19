@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 oct. 2017 14:39:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.entities.Clients" table="clients" catalog="cours" optimistic-lock="version">
+        <id name="idClient" type="java.lang.Integer">
+            <column name="id_client" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="villes" class="hibernate.entities.Villes" fetch="select">
+            <column name="cp" length="5" not-null="true" />
+        </many-to-one>
+        <property name="nom" type="string">
+            <column name="nom" length="50" not-null="true" />
+        </property>
+        <property name="prenom" type="string">
+            <column name="prenom" length="50" />
+        </property>
+        <property name="adresse" type="string">
+            <column name="adresse" length="100" />
+        </property>
+        <property name="dateNaissance" type="date">
+            <column name="date_naissance" length="10" />
+        </property>
+        <set name="cdeses" table="cdes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_client" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.entities.Cdes" />
+        </set>
+    </class>
+</hibernate-mapping>

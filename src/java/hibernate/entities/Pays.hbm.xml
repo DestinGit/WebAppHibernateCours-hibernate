@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 oct. 2017 14:39:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.entities.Pays" table="pays" catalog="cours" optimistic-lock="version">
+        <id name="idPays" type="string">
+            <column name="id_pays" length="4" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomPays" type="string">
+            <column name="nom_pays" length="50" not-null="true" />
+        </property>
+        <set name="villeses" table="villes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_pays" length="4" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.entities.Villes" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 oct. 2017 14:39:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.entities.Vendeurs" table="vendeurs" catalog="cours" optimistic-lock="version">
+        <id name="idVendeur" type="java.lang.Integer">
+            <column name="id_vendeur" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="vendeurs" class="hibernate.entities.Vendeurs" fetch="select">
+            <column name="chef" not-null="true" />
+        </many-to-one>
+        <many-to-one name="villes" class="hibernate.entities.Villes" fetch="select">
+            <column name="cp" length="5" not-null="true" />
+        </many-to-one>
+        <property name="nom" type="string">
+            <column name="nom" length="45" not-null="true" />
+        </property>
+        <set name="vendeursVilleses" table="vendeurs_villes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_vendeur" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.entities.VendeursVilles" />
+        </set>
+        <set name="venteses" table="ventes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_vendeur" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.entities.Ventes" />
+        </set>
+        <set name="vendeurses" table="vendeurs" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="chef" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.entities.Vendeurs" />
+        </set>
+    </class>
+</hibernate-mapping>

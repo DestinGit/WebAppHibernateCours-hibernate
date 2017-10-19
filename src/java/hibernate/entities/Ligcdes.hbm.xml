@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 oct. 2017 14:39:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.entities.Ligcdes" table="ligcdes" catalog="cours" optimistic-lock="version">
+        <composite-id name="id" class="hibernate.entities.LigcdesId">
+            <key-property name="idCde" type="int">
+                <column name="id_cde" />
+            </key-property>
+            <key-property name="idProduit" type="int">
+                <column name="id_produit" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="cdes" class="hibernate.entities.Cdes" update="false" insert="false" fetch="select">
+            <column name="id_cde" not-null="true" />
+        </many-to-one>
+        <many-to-one name="produits" class="hibernate.entities.Produits" update="false" insert="false" fetch="select">
+            <column name="id_produit" not-null="true" />
+        </many-to-one>
+        <property name="qte" type="int">
+            <column name="qte" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

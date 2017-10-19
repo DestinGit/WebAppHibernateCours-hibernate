@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 oct. 2017 14:39:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.entities.VendeursVilles" table="vendeurs_villes" catalog="cours" optimistic-lock="version">
+        <composite-id name="id" class="hibernate.entities.VendeursVillesId">
+            <key-property name="idVendeur" type="int">
+                <column name="id_vendeur" />
+            </key-property>
+            <key-property name="cp" type="string">
+                <column name="cp" length="5" />
+            </key-property>
+            <key-property name="dateDebut" type="date">
+                <column name="Date_debut" length="10" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="vendeurs" class="hibernate.entities.Vendeurs" update="false" insert="false" fetch="select">
+            <column name="id_vendeur" not-null="true" />
+        </many-to-one>
+        <many-to-one name="villes" class="hibernate.entities.Villes" update="false" insert="false" fetch="select">
+            <column name="cp" length="5" not-null="true" />
+        </many-to-one>
+        <property name="dateFin" type="date">
+            <column name="date_fin" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

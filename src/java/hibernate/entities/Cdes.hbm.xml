@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 oct. 2017 14:39:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.entities.Cdes" table="cdes" catalog="cours" optimistic-lock="version">
+        <id name="idCde" type="java.lang.Integer">
+            <column name="id_cde" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clients" class="hibernate.entities.Clients" fetch="select">
+            <column name="id_client" not-null="true" />
+        </many-to-one>
+        <property name="dateCde" type="date">
+            <column name="date_cde" length="10" not-null="true" />
+        </property>
+        <set name="ligcdeses" table="ligcdes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cde" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.entities.Ligcdes" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 oct. 2017 14:39:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.entities.VentesCroisees" table="ventes_croisees" catalog="cours" optimistic-lock="version">
+        <composite-id name="id" class="hibernate.entities.VentesCroiseesId">
+            <key-property name="nomVendeur" type="string">
+                <column name="nom_vendeur" length="50" />
+            </key-property>
+            <key-property name="designation" type="string">
+                <column name="designation" length="50" />
+            </key-property>
+        </composite-id>
+        <property name="vente" type="int">
+            <column name="vente" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 oct. 2017 14:39:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.entities.Villes" table="villes" catalog="cours" optimistic-lock="version">
+        <id name="cp" type="string">
+            <column name="cp" length="5" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="pays" class="hibernate.entities.Pays" fetch="select">
+            <column name="id_pays" length="4" not-null="true" />
+        </many-to-one>
+        <property name="nomVille" type="string">
+            <column name="nom_ville" length="50" not-null="true" />
+        </property>
+        <property name="site" type="string">
+            <column name="site" length="50" />
+        </property>
+        <property name="photo" type="string">
+            <column name="photo" length="50" />
+        </property>
+        <set name="vendeurses" table="vendeurs" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cp" length="5" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.entities.Vendeurs" />
+        </set>
+        <set name="vendeursVilleses" table="vendeurs_villes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cp" length="5" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.entities.VendeursVilles" />
+        </set>
+        <set name="clientses" table="clients" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cp" length="5" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.entities.Clients" />
+        </set>
+    </class>
+</hibernate-mapping>
